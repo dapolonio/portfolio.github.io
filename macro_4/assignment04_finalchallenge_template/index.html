@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>Design Your own Hogwarts!</title>
+    <style>
+      .container {
+        display: flex;
+      }
+
+      .left-column {
+        width: 320px;
+        height: 320px;
+        background-color: #eee;
+        margin-right: 20px;
+      }
+
+      .map-block {
+        width: 320px;
+        height: 320px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        background color: gray;
+
+      }
+
+      .map-block img {
+        width: 32px;
+        height: 32px;
+      }
+
+      .right-column {
+        width: 60%;
+        height: 80%;
+        position: fixed;
+        top: 0;
+        right: 0;
+        
+        padding: 20px;
+        overflow: scroll;
+      }
+
+      .right-column-img {
+        width: 32px;
+        height: 32px;
+        margin: 2px;
+        border: 1px solid black;
+      }
+      .selected {
+        border: 3px solid red;
+        width: 28px;
+        height: 28px;
+
+      }
+ 
+      .left-column {
+      width: 320px; 
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .left-column div {
+      width: 32px;
+      height: 32px; 
+      box-sizing: border-box;
+    }
+
+    .left-column div:hover {
+      border: 5px solid blue;
+    }
+
+    #instructions {
+      position: fixed;
+      right: 20;
+      top: 0;
+    }
+    </style>
+  </head>
+
+  <body>
+    <h1>Design Your Own Hogwarts!</h1>
+
+
+    <!-- load in the image array file -->
+    <script src="image_array.js"></script>
+
+    <div class="container">
+      <div class="left-column">
+
+        <div class="map-block"></div>
+      </div>
+
+      <div class="right-column">
+       <div id="instructions">Click on a tile here to select it. Then click on the map to the left to place the tile.</div> 
+
+      </div>
+    </div>
+
+    <script>
+      // create the image container for the right column
+      let imageContainer = document.querySelector('.right-column');
+      // imageContainer.className = 'right-column';
+
+      // loop through the imageArray and create an img element for each image
+      for (var i = 0; i < array_library.length; i++) {
+        var img = document.createElement('img');
+        img.src = array_library[i];
+        imageContainer.appendChild(img);
+      }
+
+      // add the image container to the HTML body
+      // document.body.appendChild(imageContainer);
+      //for the 100 divs
+      // Get the left column div
+      const leftColumn = document.querySelector('.left-column');
+
+
+
+      // Create 100 divs and add them to the left column
+      for (let i = 0; i < 100; i++) {
+        const div = document.createElement('div');
+        leftColumn.appendChild(div);
+      }
+
+
+
+
+
+
+
+
+      // clicking on img in right column
+      // get all the images in the right column
+
+
+
+      const images = document.querySelectorAll('img');
+
+      // add event listener to each image
+      console.log(images)
+      for (let i = 0; i <images.length; i++){
+        images[i].onclick = function(event){
+            // event.currentTarget.classList.remove('selected');
+
+          console.log(event.currentTarget)
+          // add 'selected' class to clicked image
+          event.currentTarget.classList.add('selected');
+          // console.log(event.currentTarget.classList)
+          console.log(event.currentTarget.classList.contains('selected'))
+
+          // update variable to hold src of clicked image
+          const selectedImageSrc = event.target.getAttribute('src');
+          console.log('Selected Image:', selectedImageSrc);
+        }
+      };
+      // what the class looks like
+      // .selected {
+      //   border: 10px solid red;
+      //   width: 28px;
+      //   height: 28px;
+
+      // }
+
+
+      // Get all the divs in the left column
+      var leftDivs = document.querySelectorAll('.left-column div');
+
+      // Set up click event listener for all images in the right column
+      var rightimages = document.querySelectorAll('.right-column img');
+      for (var i = 0; i < rightimages.length; i++) {
+        rightimages[i].addEventListener('click', function() {
+          // Remove selected class from all images
+          for (var j = 0; j < rightimages.length; j++) {
+            rightimages[j].classList.remove('selected');
+          }
+          // Add selected class to clicked image
+          this.classList.add('selected');
+          // Update selected image source
+          selectedImageSrc = this.src;
+        });
+      }
+
+      // Add a click event listener to each div in the left column
+      for (var i = 0; i < leftDivs.length; i++) {
+        leftDivs[i].addEventListener('click', function() {
+          // Set the background image to the selected image source
+          this.style.backgroundImage = 'url(' + selectedImageSrc + ')';
+        });
+      }
+
+    </script>
+  </body>
+</html>
