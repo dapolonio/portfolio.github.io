@@ -1,0 +1,61 @@
+Tohru: 0, Yuki: 2, Kyo: 2, Haru: 0
+Tohru: 0, Yuki: 1, Kyo: 3, Haru: 0
+Tohru: 0, Yuki: 0, Kyo: 4, Haru: 0
+Tohru: 2, Yuki: 0, Kyo: 1, Haru: 1
+Tohru: 0, Yuki: 4, Kyo: 0, Haru: 0
+Tohru: 0, Yuki: 2, Kyo: 2, Haru: 0
+Tohru: 0, Yuki: 1, Kyo: 3, Haru: 0
+Tohru: 4, Yuki: 0, Kyo: 0, Haru: 0
+Tohru: 0, Yuki: 4, Kyo: 0, Haru: 0
+Tohru: 0, Yuki: 2, Kyo: 1, Haru: 1
+Tohru: 4, Yuki: 0, Kyo: 0, Haru: 0
+Tohru: 2, Yuki: 1, Kyo: 1, Haru: 0
+Tohru: 0, Yuki: 3, Kyo: 1, Haru: 0
+Tohru: 1, Yuki: 3, Kyo: 0, Haru: 0
+Tohru: 0, Yuki: 4, Kyo: 0, Haru: 0
+Tohru: 0, Yuki: 1, Kyo: 2, Haru: 1
+Tohru: 0, Yuki: 2, Kyo: 2, Haru: 0
+Tohru: 3, Yuki: 1, Kyo: 0, Haru: 0
+Tohru: 0, Yuki: 2, Kyo: 2, Haru: 0
+Tohru: 0, Yuki: 4, Kyo: 0, Haru: 0
+Tohru: 0, Yuki: 1, Kyo: 3, Haru: 0
+Tohru: 0, Yuki: 1, Kyo: 3, Haru: 0
+Tohru: 4, Yuki: 0, Kyo: 0, Haru: 0
+Tohru: 4, Yuki: 0, Kyo: 0, Haru: 0
+Tohru: 0, Yuki: 3, Kyo: 1, Haru: 0
+Tohru: 0, Yuki: 1, Kyo: 2, Haru: 1
+Tohru: 2, Yuki: 1, Kyo: 0, Haru: 1
+Tohru: 1, Yuki: 3, Kyo: 0, Haru: 0
+Tohru: 0, Yuki: 3, Kyo: 0, Haru: 1
+Tohru: 0, Yuki: 0, Kyo: 3, Haru: 1
+Tohru: 0, Yuki: 2, Kyo: 1, Haru: 1
+Tohru: 0, Yuki: 1, Kyo: 2, Haru: 1
+Tohru: 1, Yuki: 3, Kyo: 0, Haru: 0
+Tohru: 1, Yuki: 3, Kyo: 0, Haru: 0
+Tohru: 3, Yuki: 1, Kyo: 0, Haru: 0
+Tohru: 0, Yuki: 3, Kyo: 0, Haru: 1
+Tohru: 1, Yuki: 2, Kyo: 1, Haru: 0
+Tohru: 2, Yuki: 1, Kyo: 1, Haru: 0
+Tohru: 2, Yuki: 2, Kyo: 0, Haru: 0
+Tohru: 1, Yuki: 1, Kyo: 2, Haru: 0
+Tohru: 0, Yuki: 2, Kyo: 2, Haru: 0
+Tohru: 3, Yuki: 1, Kyo: 0, Haru: 0
+Tohru: 2, Yuki: 2, Kyo: 0, Haru: 0
+Tohru: 1, Yuki: 1, Kyo: 1, Haru: 1 Result: You are Tohru_win
+Tohru: 2, Yuki: 1, Kyo: 1, Haru: 0 Result: You are Tohru_win
+Tohru: 1, Yuki: 2, Kyo: 1, Haru: 0 Result: You are Tohru_win
+Tohru: 2, Yuki: 0, Kyo: 1, Haru: 1 Result: You are Tohru_win
+Tohru: 0, Yuki: 0, Kyo: 3, Haru: 1 Result: You are Kyo_win
+Tohru: 1, Yuki: 1, Kyo: 2, Haru: 0 Result: You are Kyo!
+Tohru: 2, Yuki: 2, Kyo: 0, Haru: 0 Result: You are Tohru!
+Tohru: 2, Yuki: 2, Kyo: 0, Haru: 0 Result: You are Tohru!
+Tohru: 1, Yuki: 1, Kyo: 1, Haru: 1 Result: You are Tohru!
+Tohru: 1, Yuki: 0, Kyo: 2, Haru: 1 Result: You are Kyo!
+Tohru: 1, Yuki: 1, Kyo: 1, Haru: 1 Result: You are Tohru!
+Tohru: 1, Yuki: 1, Kyo: 1, Haru: 1 Result: You are Tohru!
+Tohru: 1, Yuki: 1, Kyo: 1, Haru: 1 Result: You are Tohru!
+Tohru: 2, Yuki: 0, Kyo: 1, Haru: 1 Result: You are Tohru!
+Tohru: 0, Yuki: 0, Kyo: 2, Haru: 2 Result: You are Kyo!
+Tohru: 0, Yuki: 3, Kyo: 0, Haru: 1 Result: You are Yuki!
+Tohru: 1, Yuki: 1, Kyo: 1, Haru: 1 Result: You are Tohru!
+Tohru: 2, Yuki: 0, Kyo: 1, Haru: 1 Result: You are Tohru!

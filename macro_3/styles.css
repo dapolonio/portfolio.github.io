@@ -1,0 +1,39 @@
+
+#left {
+    float: left;
+    width: 800px;
+    height: 600px;
+    position: relative;
+    margin-right: 20px;
+}
+#background {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+}
+#grass1 {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+}
+#grass2 {
+    position: absolute;
+    left: 275px;
+    bottom: 0px;
+}
+#grass3 {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+}
+.grass:hover {
+    background-color: rgba(255, 255, 0, 0.5);
+}
+#yellow {
+    background-color: yellow;
+    width: 100%;
+}
+#supermode {
+    color: blue;
+}
