@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Seasonal To-Do List</title>
+        <style>
+            h1 {
+                text-align: center;
+            }
+            body {
+                background-image: url('images/corkboard.jpg');
+            }
+            #add_item {
+                position: absolute;
+                bottom: 20px;
+                right: 20px;
+            }
+            #season_filter {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+            #panel_add_new_item {
+                width: 500px;
+                height: 250px;
+                background-color: white;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin-left: -250px;
+                margin-top: -125px;
+            }
+            #
+            .hidden {
+                display: none;
+            }
+            .error {
+                background-color: red;
+                color: white;
+            }
+            .item {
+                width: 100px;
+                height: 100px;
+                float: left;
+                margin-right: 20px;
+            }
+            .winter {
+                background-color: lightblue;                
+            }
+            .spring {
+                background-color: lightgreen;
+            }
+            .summer {
+                background-color: yellow;
+            }
+            .fall {
+                background-color: burlywood;
+            }
+
+        </style>
+    </head>
+    <body>
+        <h1>Seasonal To-Do List</h1>
+
+        <select id="season_filter">
+            <option value="all">Show all seasons</option>
+            <option value="winter">Winter</option>
+            <option value="spring">Spring</option>
+            <option value="summer">Summer</option>
+            <option value="fall">Fall</option>
+        </select>
+
+        <img id="add_item" src="images/add_button.png">
+
+        <div id="panel_add_new_item" class="hidden">
+            <h2>Add new Item</h2>
+
+            <div class="error hidden" id="add_error">Please fill out all of the form fields!</div>
+
+            <form>
+                <label for="title">Title</label><br>
+                <input type="text" id="title"><br>
+
+                <label for="category">Category</label><br>
+                <select id="category">
+                    <option value="winter">Winter</option>
+                    <option value="spring">Spring</option>
+                    <option value="summer">Summer</option>
+                    <option value="fall">Fall</option>
+                </select><br>
+        
+                <label for="description">Description</label><br>
+                <textarea id="description"></textarea><br>
+
+                <button id="add_save">Save</button>
+                <button id="add_cancel">Cancel</button>
+      <!--           <button id="delete" class="hidden">Delete</button> -->
+            </form>
+        </div>
+
+        <div id="item_container"></div>
+
+
+
+        <script>
+            // dom queries
+            const panel_add_new_item = document.querySelector("#panel_add_new_item");
+            const add_item = document.querySelector("#add_item");
+            const add_cancel = document.getElementById('add_cancel');
+            const add_save = document.getElementById('add_save');
+            const add_error = document.getElementById('add_error');
+            const item_container = document.getElementById('item_container');
+            const delete_button = document.getElementById('delete')
+
+            // when the user clicks on the + button trigger the panel to appear
+            add_item.onclick = function(e) {
+                panel_add_new_item.classList.remove('hidden');
+
+                // erase the form
+                document.querySelector('#title').value = '';
+                document.querySelector('#description').value = '';
+                document.querySelector('#category').value = 'winter';
+            }
+
+            add_cancel.onclick = function(e) {
+                e.preventDefault();
+                panel_add_new_item.classList.add('hidden');
+            }
+
+            add_save.onclick = function(e) {
+                e.preventDefault();
+
+                // grab the value from the title, category and description fields
+                let t = document.querySelector('#title').value;
+                let d = document.querySelector('#description').value;
+                let c = document.querySelector('#category').value;
+
+                // if we do have all 3, create the to-do item
+                if (t && d && c) {
+                    add_error.classList.add('hidden');
+
+                    // create our new to-do item
+                    let item = document.createElement('div');
+                    item.classList.add('item');
+                    item.classList.add('delete')
+                    item.innerText = t;
+                    item.classList.add(c);
+                    item_container.appendChild(item);
+
+                    // have the item rememeber all the data it knows about itself
+                    item.dataset.title = t;
+                    item.dataset.description = d;
+                    item.dataset.category = c;
+
+                    // set the item up so you can click on it
+                    item.onclick = function(event) {
+                        console.log(event.currentTarget.dataset.title);
+                        console.log(event.currentTarget.dataset.description);
+                        console.log(event.currentTarget.dataset.category);
+                    }
+                    // item.onmouseover = function(event) {
+                    //     panel_add_new_item.classList.remove('hidden');
+                    // }
+
+                    // close the add panel
+                    panel_add_new_item.classList.add('hidden');
+                }
+
+                // make sure we hvae all 3 -- if not, trigger the error message
+                else {
+                    add_error.classList.remove('hidden');
+                }
+
+
+            }
+
+
+        </script>
+    </body>
+</html>

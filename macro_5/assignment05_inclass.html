@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Seasonal To-Do List</title>
+        <style>
+            body {
+                background-image: url('images/corkboard.jpg');
+            }
+            #add_item {
+                position: absolute;
+                bottom: 20px;
+                right: 20px;
+            }
+            #season_filter {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+            #panel_add_new_item {
+                width: 500px;
+                height: 250px;
+                background-color: white;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin-left: -250px;
+                margin-top: -125px;
+            }
+            .hidden {
+                display: none;
+            }
+            .error {
+                background-color: red;
+                color: white;
+            }
+            .item {
+                position: relative;
+                width: 100px;
+                height: 100px;
+                float: left;
+                margin-right: 20px;
+            }
+            .winter {
+                background-color: lightblue;                
+            }
+            .spring {
+                background-color: lightgreen;
+            }
+            .summer {
+                background-color: yellow;
+            }
+            .fall {
+                background-color: burlywood;
+            }
+            .delete-button {
+                /*display: block;*/
+                position: relative;
+                margin-top: -120px;
+                margin-left: 85px;
+            }
+            .delete-button_panel_info {
+                position: absolute;
+                display: block;
+                bottom: 90%;
+                right: 5%;
+             
+            }
+            #panel_info_item {
+                /*display: inline;*/
+                width: 500px;
+                height: 250px;
+                background-color: white;
+                position: relative;
+                top: 50%;
+                left: 30%;
+               
+               
+            }
+            .completed{
+                position: relative;
+                width: 100px;
+                height: 100px;
+                float: left;
+                margin-right: 20px;
+                border: 5px solid green;
+            }
+            .uncompleted {
+                position: relative;
+                width: 100px;
+                height: 100px;
+                float: left;
+                margin-right: 20px;
+                border: 5px solid red;
+            }
+            
+            .complete_button {
+                position: absolute;
+                top: 100px;
+                left: 0px;
+            }
+            .uncomplete_button {
+                position: absolute;
+                top: 90px;
+            }
+
+        </style>
+    </head>
+    <body>
+        <h1>Seasonal To-Do List</h1>
+
+        <select id="season_filter">
+            <option value="all">Show all seasons</option>
+            <option value="winter">Winter</option>
+            <option value="spring">Spring</option>
+            <option value="summer">Summer</option>
+            <option value="fall">Fall</option>
+            <option value="completed">Show completed items</option>
+            <option value="uncompleted">Show un-completed items</option>
+        </select>
+
+        <img id="add_item" src="images/add_button.png">
+
+        <div id="panel_add_new_item" class="hidden">
+            <h2>Add new Item</h2>
+
+            <div class="error hidden" id="add_error">Please fill out all of the form fields!</div>
+
+            <form>
+                <label for="title">Title</label><br>
+                <input type="text" id="title"><br>
+
+                <label for="category">Category</label><br>
+                <select id="category">
+                    <option value="winter">Winter</option>
+                    <option value="spring">Spring</option>
+                    <option value="summer">Summer</option>
+                    <option value="fall">Fall</option>
+                </select><br>
+        
+                <label for="description">Description</label><br>
+                <textarea id="description"></textarea><br>
+
+                <button id="add_save">Save</button>
+                <button id="add_cancel">Cancel</button>
+            </form>
+        </div>
+
+        <div id="panel_info_item" class="hidden">
+          <h2>Item Info</h2>
+          <p id="item_title"></p>
+          <p id="item_season"></p>
+          <p id="item_description"></p>
+          <p id="item_created"></p>
+          <p id="item_accessed"></p>
+        </div>
+        <div id="item_container"></div>
+
+
+
+        <script>
+            // dom queries
+            const panel_add_new_item = document.querySelector("#panel_add_new_item");
+            const add_item = document.querySelector("#add_item");
+            const add_cancel = document.getElementById('add_cancel');
+            const add_save = document.getElementById('add_save');
+            const add_error = document.getElementById('add_error');
+            const item_container = document.getElementById('item_container');
+            let deleteButton;
+            let item;
+            let panel_info_item = document.getElementById('panel_info_item')
+            const season_filter = document.getElementById('season_filter');
+
+
+            // when the user clicks on the + button trigger the panel to appear
+            add_item.onclick = function(e) {
+                panel_add_new_item.classList.remove('hidden');
+     
+                // erase the form
+                document.querySelector('#title').value = '';
+                document.querySelector('#description').value = '';
+                document.querySelector('#category').value = 'winter';
+                //hide the info panel
+                panel_info_item.classList.add('hidden');
+                //show all the items
+                const items = document.querySelectorAll('.item');
+                items.forEach(function(item){
+                    item.style.display = "block";
+                });
+                //revert the filter to "show all"
+                 // Check if filter is set to a specific season
+                if (season_filter.value !== 'all') {
+                    // If so, reset filter to show all items
+                    season_filter.value = 'all';
+                }
+
+            }
+
+            add_cancel.onclick = function(e) {
+                e.preventDefault();
+                panel_add_new_item.classList.add('hidden');
+            }
+
+            add_save.onclick = function(e) {
+                e.preventDefault();
+
+                // grab the value from the title, category and description fields
+                let t = document.querySelector('#title').value;
+                let d = document.querySelector('#description').value;
+                let c = document.querySelector('#category').value;
+
+                // if we do have all 3, create the to-do item
+                if (t && d && c) {
+                    add_error.classList.add('hidden');
+
+                    // create our new to-do item
+                    let item = document.createElement('div');
+                    item.classList.add('item');
+                    item.innerText = t;
+                    item.classList.add(c);
+                    item_container.appendChild(item);
+
+                    // add a delete button to the item
+                    let deleteButton = document.createElement('button');
+                    deleteButton.innerText = "x";
+                    deleteButton.classList.add('delete-button', 'hidden');
+                    item.appendChild(deleteButton);
+                
+                    // set up the delete button to remove the item when clicked
+                    item.addEventListener("mouseover", function(event) {
+                        deleteButton.classList.remove('hidden')
+                        
+                        console.log(deleteButton.classList)
+                        
+                    })
+                    item.addEventListener('mouseout', function(event) {
+                        deleteButton.classList.add('hidden')
+                        
+                        console.log(deleteButton.classList)
+                        
+                    })
+                    deleteButton.onclick = function(event) {
+                        event.stopPropagation(); // prevent the item from being clicked when the delete button is clicked
+                        item.remove();
+                        panel_info_item.remove();
+                    }
+
+                    // have the item rememeber all the data it knows about itself
+                    item.dataset.title = t;
+                    item.dataset.description = d;
+                    item.dataset.category = c;
+                    item.dataset.created = new Date().getTime(); // add this line
+
+                    // set the item up so you can click on it
+                    item.onclick = function(event) {
+                        console.log(event.currentTarget.dataset.title);
+                        console.log(event.currentTarget.dataset.description);
+                        console.log(event.currentTarget.dataset.category);
+                    }
+
+                    // close the add panel
+                    panel_add_new_item.classList.add('hidden');
+
+                }
+            
+                // make sure we have all 3 -- if not, trigger the error message
+                else {
+                    add_error.classList.remove('hidden');
+            }
+             
+            // add a click event listener to each item
+            // let panel_info_item = document.querySelector('#panel_info_item');
+            for (let i = 0; i < item_container.children.length; i++){
+  
+                // select all the items in the container
+                let current_item = item_container.children[i];
+                current_item.onclick = function(e) {
+                    
+                    // get the item's data attributes
+                    const title = current_item.dataset.title;
+                    const season = current_item.dataset.category;
+                    const description = current_item.dataset.description;
+                    const created = new Date(parseInt(current_item.dataset.created));
+                    const accessed = new Date();
+    
+                    // update the info panel's fields with the data
+                    document.getElementById('item_title').innerHTML = title;
+                    document.querySelector('#item_season').innerHTML = season;
+                    document.querySelector('#item_description').innerHTML = description;
+                    document.querySelector('#item_created').innerHTML = 'Created at ' + created;
+                    document.querySelector('#item_accessed').innerHTML = 'Last accessed at ' + accessed;
+
+                    // show the info panel
+                    panel_info_item.classList.remove('hidden');
+                    //add delete button to panel
+                    // add a delete button to the item
+                    let deleteButton = document.createElement('button');
+                    deleteButton.innerText = "x";
+                    deleteButton.classList.add('delete-button_panel_info');
+                    deleteButton.classList.add('hidden')
+                    panel_info_item.appendChild(deleteButton);
+                    // set up the delete button to remove the item when clicked
+
+
+
+                    deleteButton.onclick = function(event) {
+                        event.stopPropagation(); // prevent the item from being clicked when the delete button is clicked
+                        panel_info_item.remove();
+                        //give it class of hidden again
+                        panel_info_item.classList.add('hidden');
+                    }
+                }
+            }
+            // when the user changes the dropdown menu, filter the items on the board
+            season_filter.onchange = function(e) {
+                const selectedSeason = e.target.value;
+                const items = document.querySelectorAll('.item');
+                items.forEach(function(item) {
+                    if (selectedSeason === 'all' || item.classList.contains(selectedSeason)){
+                        item.style.display = 'block';
+                    
+                    } else if (selectedSeason === 'completed' && item.classList.contains('completed')){
+                        item.style.display = 'block';
+                    } else if (selectedSeason === 'uncompleted' && item.classList.contains('uncompleted')){
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                    
+                });
+            }
+
+
+            // Loop through each item element and add a completion button
+            //for reference, item has either class of 'completed' or 'uncompleted'
+            let items = item_container.querySelectorAll('.item');
+
+            items.forEach(function(item) {
+              // Create button element to indicate completion
+              let complete_button = document.createElement('button');
+              complete_button.textContent = 'Complete';
+              complete_button.classList.add('complete_button');
+              item.appendChild(complete_button);
+              complete_button.onclick = function() {
+                //so one class style overlaps the other
+                item.classList.remove('item'); 
+                item.classList.add('completed');
+                item.classList.add('item');
+
+
+                // Create button element to indicate uncompletion
+                let un_complete_button = document.createElement('button');
+                un_complete_button.textContent = 'Uncomplete';
+                un_complete_button.classList.add('uncomplete_button');
+                item.appendChild(un_complete_button);
+                un_complete_button.onclick = function() {
+                  item.classList.remove('completed');
+                  item.classList.add('uncompleted');
+                  item.classList.add('item');
+                  item.removeChild(un_complete_button);
+                }
+                
+                item.removeChild(complete_button);
+              };
+
+            });
+
+
+
+
+
+
+    //closing
+        }
+
+            
+
+
+        </script>
+    </body>
+</html>
