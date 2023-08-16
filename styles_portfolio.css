@@ -1,0 +1,60 @@
+body {
+  background-color: black;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+
+}
+
+.container img {
+  max-width: 300px;
+  height: auto;
+  object-fit: cover;
+  margin: 10px;
+  
+}
+
+/*.navyblue {
+  background: linear-gradient(rgb(0, 31, 63), rgb(0, 116, 189), rgb(0, 31, 63));
+  box-shadow: 0 0 20px 0 rgb(0, 31, 63);
+}*/
+
+
+
+.red {
+  background: linear-gradient(rgb(122, 74, 14), rgb(245, 62, 113), rgb(162, 27, 27));
+  box-shadow: 0 0 20px 0 red;
+}
+
+
+.green {
+  background: linear-gradient(#55680D, #71F53E, #116C31);
+  box-shadow: 0 0 20px 0 #3B7E20CC;
+}
+
+.blue {
+  background: linear-gradient(hsl(186, 76%, 16%), hsl(223, 90%, 60%), hsl(240, 56%, 42%));
+  box-shadow: 0 0 20px 0 blue;
+}
+
+.brown {
+  background: linear-gradient(hsl(30, 90%, 40%), hsl(0, 80%, 50%), hsl(10, 60%, 30%));
+  box-shadow: 0 0 20px 0 brown;
+}
+
+
+.gray {
+  background: linear-gradient(#7B7B7B, #C9C9C9, #7B7B7B);
+  box-shadow: 0 0 20px 0 gray;
+}
+
+.red, .green, .blue, .brown, .gray {
+  margin: 10px;
+}
+
+
+
