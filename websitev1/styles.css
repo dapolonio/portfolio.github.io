@@ -101,7 +101,7 @@ a:active {
 @media (min-width: 30em) {
 
   main {
-    grid-template-columns: 1fr;
+    
     
   }
 
