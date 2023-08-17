@@ -98,7 +98,7 @@ a:active {
 .video-container iframe, .video-container object, .video-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
 
-@media (max-width: 30em) {
+@media (min-width: 30em) {
 
   main {
     grid-template-columns: 1fr;
@@ -115,7 +115,7 @@ a:active {
 
 }
 
-@media (max-width: 45em) {
+@media (min-width: 45em) {
 
   main {
     grid-template-columns: 1fr 1fr;
