@@ -114,7 +114,9 @@ a:active {
   nav > a {
     margin-right: 1em;
   }
-
+  p {
+    display: flex;
+  }
 }
 
 @media (min-width: 900px) {
