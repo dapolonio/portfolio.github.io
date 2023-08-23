@@ -104,8 +104,7 @@ a:active {
 @media (min-width: 30em) {
 
   main {
-    display: flex;
-    flex-direction: row;
+    grid-template-columns: 1fr;
     
   }
 
